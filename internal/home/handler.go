@@ -16,7 +16,7 @@ func NewHandler(router fiber.Router) {
 }
 
 func (h *HomeHandler) home(c *fiber.Ctx) error {
-	return c.SendString("Hello")
+	return fiber.NewError(fiber.StatusBadRequest, "Limit params is undefined")
 }
 
 func (h *HomeHandler) error(c *fiber.Ctx) error {
