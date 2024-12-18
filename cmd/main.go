@@ -6,6 +6,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/log"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 )
 
@@ -16,6 +17,8 @@ func main() {
 
 	app := fiber.New()
 	log.SetLevel(log.Level(logConfig.Level))
+
+	app.Use(logger.New())
 	app.Use(recover.New())
 
 	home.NewHandler(app)
