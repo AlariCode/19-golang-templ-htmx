@@ -23,8 +23,9 @@ func (h *HomeHandler) home(c *fiber.Ctx) error {
 }
 
 func (h *HomeHandler) error(c *fiber.Ctx) error {
-	log.Info("Info")
+	log.Trace("Trace")
 	log.Debug("Debug")
+	log.Info("Info")
 	log.Warn("Warn")
 	log.Error("Error")
 	log.Panic("Error")
