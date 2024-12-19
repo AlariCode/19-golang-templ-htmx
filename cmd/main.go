@@ -4,10 +4,10 @@ import (
 	"alaricode/go-fiber/config"
 	"alaricode/go-fiber/internal/home"
 
+	"github.com/gofiber/contrib/fiberzerolog"
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/log"
-	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
+	"github.com/rs/zerolog"
 )
 
 func main() {
@@ -16,9 +16,8 @@ func main() {
 	logConfig := config.NewLogConfig()
 
 	app := fiber.New()
-	log.SetLevel(log.Level(logConfig.Level))
-
-	app.Use(logger.New())
+	zerolog.SetGlobalLevel(zerolog.Level(logConfig.Level))
+	app.Use(fiberzerolog.New())
 	app.Use(recover.New())
 
 	home.NewHandler(app)
