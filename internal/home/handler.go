@@ -24,15 +24,13 @@ func NewHandler(router fiber.Router, customLogger *zerolog.Logger) {
 }
 
 func (h *HomeHandler) home(c *fiber.Ctx) error {
-	tmpl, err := template.New("test").Parse("{{.Count}} - число пользователей")
+	tmpl := template.Must(template.ParseFiles("./html/page.html"))
 	data := struct{ Count int }{Count: 5}
-	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, "Template error")
-	}
 	var tpl bytes.Buffer
 	if err := tmpl.Execute(&tpl, data); err != nil {
 		return fiber.NewError(fiber.StatusBadRequest, "Template compile error")
 	}
+	c.Set(fiber.HeaderContentType, fiber.MIMETextHTML)
 	return c.Send(tpl.Bytes())
 }
 
