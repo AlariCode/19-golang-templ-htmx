@@ -6,14 +6,16 @@
     <title>Страница</title>
   </head>
   <body>
+    {{ $test := "Тест" }}
     <div>
       {{ range .Names}}
       <p>{{.}}</p>
       {{ end }}
     </div>
+    {{ $test = "Изменение" }}
     <div>
       {{ range .Users}}
-      <p>{{.Id}} - {{.Name}}</p>
+      <p>{{.Id}} - {{.Name | ToUpper}} - {{ $test }}</p>
       {{ end }}
     </div>
   </body>
