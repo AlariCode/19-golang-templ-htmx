@@ -6,24 +6,15 @@
     <title>Страница</title>
   </head>
   <body>
-    {{.Count}} - число пользователей
-    <br />
-    {{ if .IsAdmin}}
-    <p>Вы админ</p>
-    {{ else }}
-    <p>Вы не админ</p>
-    {{ end }}
-    <br />
-    {{ if eq .Count 0 }}
-    <p>Пользователей нет</p>
-    {{ else if lt .Count 10 }}
-    <p>Пользователей меньше 10</p>
-    {{ else }}
-    <p>Пользователей 10 или более</p>
-    {{ end }}
-    <br />
-    {{ if and .IsAdmin .CanUse}}
-    <p>Админ и может использовать</p>
-    {{ end }}
+    <div>
+      {{ range .Names}}
+      <p>{{.}}</p>
+      {{ end }}
+    </div>
+    <div>
+      {{ range .Users}}
+      <p>{{.Id}} - {{.Name}}</p>
+      {{ end }}
+    </div>
   </body>
 </html>
