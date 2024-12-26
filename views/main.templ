@@ -1,10 +1,13 @@
 package views
 
 import "alaricode/go-fiber/views/components"
+import "alaricode/go-fiber/views/layout"
 
 templ Main() {
 	<main>
-	@components.Title("Найди работу своей мечты")
+	@layout.Header() {
+		@components.Title("Найди работу своей мечты")
+	}
 	Main
 	</main>
 }
