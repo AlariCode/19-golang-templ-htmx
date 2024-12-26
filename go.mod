@@ -3,6 +3,7 @@ module alaricode/go-fiber
 go 1.23.4
 
 require (
+	github.com/a-h/templ v0.2.793 // indirect
 	github.com/andybalholm/brotli v1.1.1 // indirect
 	github.com/gofiber/contrib/fiberzerolog v1.0.2 // indirect
 	github.com/gofiber/fiber/v2 v2.52.5 // indirect
