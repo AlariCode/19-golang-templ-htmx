@@ -1,0 +1,22 @@
+package components
+
+templ LinkButton(href string) {
+	@LinkButtonStyle()
+	<a class="link-button" href={templ.SafeURL(href)}>{ children... }</a>
+}
+
+templ LinkButtonStyle() {
+	<style>
+		.link-button {
+			padding: 15px 20px;
+			background-color: var(--color-primary);
+			color: var(--color-white);
+			text-decoration: none;
+			border-radius: 8px;
+		}
+
+		.link-button:hover {
+			background-color: var(--color-primary-hover);
+		}
+	</style>
+}

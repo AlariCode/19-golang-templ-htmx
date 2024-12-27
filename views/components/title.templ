@@ -1,11 +1,11 @@
 package components
 
 templ Title(title string) {
-	@TitleCSS()
+	@TitleStyle()
 	<h1 class="title">{title}</h1>
 }
 
-templ TitleCSS() {
+templ TitleStyle() {
 	<style>
 		.title {
 			font-weight: bold;
