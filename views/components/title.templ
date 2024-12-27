@@ -1,5 +1,13 @@
 package components
 
+css titleClass() {
+	font-size: { "70px" };
+	color: { "#FFFFFF" };
+	font-width: { "bold" };
+	margin-bottom: { "12px" };
+	margin-top: { "0px" };
+}
+
 templ Title(title string) {
-	<h1>{title}</h1>
+	<h1 class={titleClass()}>{title}</h1>
 }
