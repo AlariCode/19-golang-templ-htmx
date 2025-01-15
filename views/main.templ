@@ -2,6 +2,7 @@ package views
 
 import "alaricode/go-fiber/views/components"
 import "alaricode/go-fiber/views/layout"
+import "alaricode/go-fiber/views/widgets"
 
 templ Main() {
 	
@@ -17,14 +18,7 @@ templ Main() {
 			}
 			Main
 			<div class="main__submit-form">
-				@components.Title2("Опубликовать вакансию")
-				@components.Input(components.InputProps{
-					Name: "role",
-					Placeholder: "Должность",
-				})
-				@components.SubmitButton() {
-					<span>Отправить</span>
-				}
+				@widgets.VacancyForm()
 			</div>
 		</main>
 	}
@@ -33,7 +27,11 @@ templ Main() {
 templ MainStyle() {
 <style>
 	.main__submit-form {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		background: rgba(48, 150, 137, 0.10);
+		padding: 60px 0 120px 0;
 	}
 </style>
 }

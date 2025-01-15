@@ -1,0 +1,73 @@
+package widgets
+
+import "alaricode/go-fiber/views/components"
+
+templ VacancyForm() {
+	@VacancyFormStyle()
+	<div class="vacancy-form">
+		@components.Title2("Опубликовать вакансию")
+		<p class="vacancy-form__text">Введите все необходимые данные для публикации</p>
+		<form>
+			<div class="vacancy-form__inputs">
+				@components.Input(components.InputProps{
+				Name: "role",
+				Placeholder: "Должность",
+				})
+				@components.Input(components.InputProps{
+				Name: "company",
+				Placeholder: "Название компании",
+				})
+				@components.Input(components.InputProps{
+				Name: "type",
+				Placeholder: "Сфера компании",
+				})
+				@components.Input(components.InputProps{
+				Name: "salary",
+				Placeholder: "Заработная плата",
+				})
+				@components.Input(components.InputProps{
+				Name: "location",
+				Placeholder: "Расположение",
+				})
+				@components.Input(components.InputProps{
+				Name: "email",
+				Placeholder: "Контактный email",
+				})
+			</div>
+			@components.SubmitButton() {
+			<span>Опубликовать</span>
+			}
+		</form>
+	</div>
+}
+
+templ VacancyFormStyle() {
+<style>
+	.vacancy-form__text {
+		overflow: hidden;
+		color: var(--color-black);
+		text-align: center;
+		white-space: nowrap;
+		font-size: 16px;
+		font-weight: 400;
+		margin-bottom: 60px;
+	}
+	.vacancy-form {
+		max-width: 890px;
+		width: 100%;
+	}
+	.vacancy-form form {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+	.vacancy-form__inputs {
+		width: 100%;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 30px 24px;
+		margin-bottom: 30px;
+	}
+</style>
+}
