@@ -4,16 +4,36 @@ import "alaricode/go-fiber/views/components"
 import "alaricode/go-fiber/views/layout"
 
 templ Main() {
+	
 	@layout.Layout(layout.LayoutProps{
 		Title: "Найди работу мечты",
 		MetaDescription: "Сайт по поиску работы мечты",
 	}) {
 		<main>
+			@MainStyle()
 			@layout.Header() {
 			@components.Title("Найди работу своей мечты!")
 			@components.SubTitle("Простой поиск работы")
 			}
 			Main
+			<div class="main__submit-form">
+				@components.Title2("Опубликовать вакансию")
+				@components.Input(components.InputProps{
+					Name: "role",
+					Placeholder: "Должность",
+				})
+				@components.SubmitButton() {
+					<span>Отправить</span>
+				}
+			</div>
 		</main>
 	}
+}
+
+templ MainStyle() {
+<style>
+	.main__submit-form {
+		background: rgba(48, 150, 137, 0.10);
+	}
+</style>
 }

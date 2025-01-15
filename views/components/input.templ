@@ -1,0 +1,26 @@
+package components
+
+type InputProps struct {
+	Placeholder string
+	Name string
+}
+
+templ Input(props InputProps) {
+@InputStyle()
+	<input placeholder={props.Placeholder} name={props.Name} class="input" />
+}
+
+templ InputStyle() {
+<style>
+	.input {
+		height: 80px;
+		padding: 20px;
+		border-radius: 20px;
+		background: var(--color-white);
+		border: none;
+	}
+	.input::placeholder {
+		color: var(--color-gray);
+	}
+</style>
+}

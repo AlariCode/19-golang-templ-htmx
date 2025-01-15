@@ -1,0 +1,24 @@
+package components
+
+templ SubmitButton() {
+@SubmitButtonStyle()
+<button class="submit-button">{ children... }</button>
+}
+
+templ SubmitButtonStyle() {
+<style>
+	.submit-button {
+		height: 80px;
+		padding: 14px 28px;
+		background-color: var(--color-primary);
+		color: var(--color-white);
+		border: none;
+		border-radius: 20px;
+		cursor: pointer;
+	}
+
+	.submit-button:hover {
+		background-color: var(--color-primary-hover);
+	}
+</style>
+}
