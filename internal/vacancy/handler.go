@@ -20,5 +20,7 @@ func NewHandler(router fiber.Router, customLogger *zerolog.Logger) {
 }
 
 func (h *VacancyHandler) createVacancy(c *fiber.Ctx) error {
+	email := c.FormValue("email")
+	h.customLogger.Info().Msg(email)
 	return c.SendString("createVacancy")
 }

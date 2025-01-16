@@ -6,8 +6,9 @@ templ VacancyForm() {
 	@VacancyFormStyle()
 	<div class="vacancy-form">
 		@components.Title2("Опубликовать вакансию")
+		<div id="vacancy-result"></div>
 		<p class="vacancy-form__text">Введите все необходимые данные для публикации</p>
-		<form>
+		<form hx-post="/vacancy" hx-trigger="submit" hx-target="#vacancy-result" hx-swap="innerHTML">
 			<div class="vacancy-form__inputs">
 				@components.Input(components.InputProps{
 				Name: "role",
