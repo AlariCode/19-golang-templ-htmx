@@ -3,6 +3,7 @@ package main
 import (
 	"alaricode/go-fiber/config"
 	"alaricode/go-fiber/internal/home"
+	"alaricode/go-fiber/internal/vacancy"
 	"alaricode/go-fiber/pkg/logger"
 
 	"github.com/gofiber/contrib/fiberzerolog"
@@ -24,6 +25,7 @@ func main() {
 	app.Static("/public", "./public")
 
 	home.NewHandler(app, customLogger)
+	vacancy.NewHandler(app, customLogger)
 
 	app.Listen(":3000")
 }
