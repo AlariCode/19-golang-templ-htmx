@@ -4,6 +4,7 @@ import (
 	"alaricode/go-fiber/pkg/tadapter"
 	"alaricode/go-fiber/views/components"
 
+	"github.com/a-h/templ"
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog"
 )
@@ -24,7 +25,11 @@ func NewHandler(router fiber.Router, customLogger *zerolog.Logger) {
 
 func (h *VacancyHandler) createVacancy(c *fiber.Ctx) error {
 	email := c.FormValue("email")
-	h.customLogger.Info().Msg(email)
-	component := components.Notification("Вакансия успешно создана")
+	var component templ.Component
+	if email == "" {
+		component = components.Notification("Не задан email", components.NotificationFail)
+		return tadapter.Render(c, component)
+	}
+	component = components.Notification("Вакансия успешно создана", components.NotificationSuccess)
 	return tadapter.Render(c, component)
 }
