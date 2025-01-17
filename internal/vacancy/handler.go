@@ -4,6 +4,7 @@ import (
 	"alaricode/go-fiber/pkg/tadapter"
 	"alaricode/go-fiber/pkg/validator"
 	"alaricode/go-fiber/views/components"
+	"time"
 
 	"github.com/a-h/templ"
 	"github.com/gobuffalo/validate"
@@ -33,6 +34,7 @@ func (h *VacancyHandler) createVacancy(c *fiber.Ctx) error {
 	errors := validate.Validate(
 		&validators.EmailIsPresent{Name: "Email", Field: form.Email, Message: "Email не задан или неверный"},
 	)
+	time.Sleep(time.Second * 2)
 	var component templ.Component
 	if len(errors.Errors) > 0 {
 		component = components.Notification(validator.FormatErrors(errors), components.NotificationFail)
