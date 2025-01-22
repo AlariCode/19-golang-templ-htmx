@@ -3,6 +3,7 @@ package home
 import (
 	"alaricode/go-fiber/pkg/tadapter"
 	"alaricode/go-fiber/views"
+	"net/http"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog"
@@ -29,7 +30,7 @@ func NewHandler(router fiber.Router, customLogger *zerolog.Logger) {
 
 func (h *HomeHandler) home(c *fiber.Ctx) error {
 	component := views.Main()
-	return tadapter.Render(c, component)
+	return tadapter.Render(c, component, http.StatusOK)
 }
 
 func (h *HomeHandler) error(c *fiber.Ctx) error {

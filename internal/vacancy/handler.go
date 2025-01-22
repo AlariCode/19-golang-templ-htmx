@@ -4,6 +4,7 @@ import (
 	"alaricode/go-fiber/pkg/tadapter"
 	"alaricode/go-fiber/pkg/validator"
 	"alaricode/go-fiber/views/components"
+	"net/http"
 
 	"github.com/a-h/templ"
 	"github.com/gobuffalo/validate"
@@ -48,14 +49,14 @@ func (h *VacancyHandler) createVacancy(c *fiber.Ctx) error {
 	var component templ.Component
 	if len(errors.Errors) > 0 {
 		component = components.Notification(validator.FormatErrors(errors), components.NotificationFail)
-		return tadapter.Render(c, component)
+		return tadapter.Render(c, component, http.StatusBadRequest)
 	}
 	err := h.repository.addVacancy(form)
 	if err != nil {
 		h.customLogger.Error().Msg(err.Error())
 		component = components.Notification("Произошла ошибка на сервере, попробуйте позднее", components.NotificationFail)
-		return tadapter.Render(c, component)
+		return tadapter.Render(c, component, http.StatusBadRequest)
 	}
 	component = components.Notification("Вакансия успешно создана", components.NotificationSuccess)
-	return tadapter.Render(c, component)
+	return tadapter.Render(c, component, http.StatusOK)
 }
