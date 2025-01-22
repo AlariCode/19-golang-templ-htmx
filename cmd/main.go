@@ -28,8 +28,12 @@ func main() {
 	dbpool := database.CreateDbPool(dbConfig, customLogger)
 	defer dbpool.Close()
 
+	// Repositories
+	vacancyRepo := vacancy.NewVacancyRepository(dbpool, customLogger)
+
+	// Handler
 	home.NewHandler(app, customLogger)
-	vacancy.NewHandler(app, customLogger)
+	vacancy.NewHandler(app, customLogger, vacancyRepo)
 
 	app.Listen(":3000")
 }
