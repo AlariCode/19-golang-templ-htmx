@@ -3,10 +3,9 @@ package views
 import "alaricode/go-fiber/views/components"
 import "alaricode/go-fiber/views/layout"
 import "alaricode/go-fiber/views/widgets"
-import "time"
+import "alaricode/go-fiber/internal/vacancy"
 
-templ Main() {
-	
+templ Main(vacancies []vacancy.Vacancy) {
 	@layout.Layout(layout.LayoutProps{
 		Title: "Найди работу мечты",
 		MetaDescription: "Сайт по поиску работы мечты",
@@ -17,15 +16,20 @@ templ Main() {
 			@components.Title("Найди работу своей мечты!")
 			@components.SubTitle("Простой поиск работы")
 			}
-			@components.VacancyCard(components.VacancyCardProps{
-				Email: "",
-				Location: "Онлайн",
-				Salary: "10000$",
-				CompanyType: "IT",
-				Company: "PurpleCode",
-				Createdat: time.Now(),
-				Role: "Копирайтер",
-			})
+			<div>
+				for _, vacancy := range vacancies {
+					@components.VacancyCard(components.VacancyCardProps{
+						Email: vacancy.Email,
+						Location: vacancy.Location,
+						Salary: vacancy.Salary,
+						CompanyType: vacancy.Type,
+						Company: vacancy.Company,
+						Createdat: vacancy.CreatedAt,
+						Role: vacancy.Role,
+					})
+				}
+			</div>
+			
 			<div class="main__submit-form">
 				@widgets.VacancyForm()
 			</div>

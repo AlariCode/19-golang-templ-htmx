@@ -22,7 +22,7 @@ func NewVacancyRepository(dbpool *pgxpool.Pool, customLogger *zerolog.Logger) *V
 	}
 }
 
-func (r *VacancyRepository) getAll() ([]Vacancy, error) {
+func (r *VacancyRepository) GetAll() ([]Vacancy, error) {
 	query := "SELECT * from vacancies"
 	rows, err := r.Dbpool.Query(context.Background(), query)
 	if err != nil {
