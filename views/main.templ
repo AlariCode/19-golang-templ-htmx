@@ -3,6 +3,7 @@ package views
 import "alaricode/go-fiber/views/components"
 import "alaricode/go-fiber/views/layout"
 import "alaricode/go-fiber/views/widgets"
+import "time"
 
 templ Main() {
 	
@@ -16,6 +17,15 @@ templ Main() {
 			@components.Title("Найди работу своей мечты!")
 			@components.SubTitle("Простой поиск работы")
 			}
+			@components.VacancyCard(components.VacancyCardProps{
+				Email: "",
+				Location: "Онлайн",
+				Salary: "10000$",
+				CompanyType: "IT",
+				Company: "PurpleCode",
+				Createdat: time.Now(),
+				Role: "Копирайтер",
+			})
 			<div class="main__submit-form">
 				@widgets.VacancyForm()
 			</div>

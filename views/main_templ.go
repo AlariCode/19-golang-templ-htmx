@@ -11,6 +11,7 @@ import templruntime "github.com/a-h/templ/runtime"
 import "alaricode/go-fiber/views/components"
 import "alaricode/go-fiber/views/layout"
 import "alaricode/go-fiber/views/widgets"
+import "time"
 
 func Main() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
@@ -80,6 +81,18 @@ func Main() templ.Component {
 				return templ_7745c5c3_Err
 			})
 			templ_7745c5c3_Err = layout.Header().Render(templ.WithChildren(ctx, templ_7745c5c3_Var3), templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = components.VacancyCard(components.VacancyCardProps{
+				Email:       "",
+				Location:    "Онлайн",
+				Salary:      "10000$",
+				CompanyType: "IT",
+				Company:     "PurpleCode",
+				Createdat:   time.Now(),
+				Role:        "Копирайтер",
+			}).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
