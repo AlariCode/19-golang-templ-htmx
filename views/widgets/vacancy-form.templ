@@ -5,7 +5,7 @@ import "alaricode/go-fiber/views/components"
 templ VacancyForm() {
 	@VacancyFormStyle()
 	<div class="vacancy-form" hx-ext="response-targets">
-		@components.Title2("Опубликовать вакансию")
+		@components.Title2("Опубликовать вакансию", true)
 		<div id="vacancy-result"></div>
 		<p class="vacancy-form__text">Введите все необходимые данные для публикации</p>
 		<form hx-post="/vacancy"

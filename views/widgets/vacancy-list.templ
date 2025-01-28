@@ -1,0 +1,45 @@
+package widgets
+
+import "alaricode/go-fiber/internal/vacancy"
+import "alaricode/go-fiber/views/components"
+
+templ VacancyList(vacancies []vacancy.Vacancy) {
+@VacancyListStyle()
+	<div class="vacancy-list__wrapper">
+		@components.Title2("Последние вакансии", false)
+		<p>Найдите подходящую вакансию за пару минут!</p>
+		<div class="vacancy-list">
+			for _, vacancy := range vacancies {
+			@components.VacancyCard(components.VacancyCardProps{
+					Email: vacancy.Email,
+					Location: vacancy.Location,
+					Salary: vacancy.Salary,
+					CompanyType: vacancy.Type,
+					Company: vacancy.Company,
+					Createdat: vacancy.CreatedAt,
+					Role: vacancy.Role,
+				})
+			}
+		</div>
+	</div>
+}
+
+templ VacancyListStyle() {
+<style>
+	.vacancy-list__wrapper {
+		width: 100%;
+		max-width: 1296px;
+		margin: 0 auto;
+		padding: 60px 0;
+	}
+	.vacancy-list__wrapper p {
+		margin-bottom: 60px;
+	}
+	.vacancy-list {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		gap: 24px;
+	}
+</style>
+}
