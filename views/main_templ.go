@@ -13,7 +13,7 @@ import "alaricode/go-fiber/views/layout"
 import "alaricode/go-fiber/views/widgets"
 import "alaricode/go-fiber/internal/vacancy"
 
-func Main(vacancies []vacancy.Vacancy) templ.Component {
+func Main(vacancies []vacancy.Vacancy, pagesCount, page int) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -84,7 +84,7 @@ func Main(vacancies []vacancy.Vacancy) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = widgets.VacancyList(vacancies).Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = widgets.VacancyList(vacancies, pagesCount, page).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

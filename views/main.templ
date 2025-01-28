@@ -5,7 +5,7 @@ import "alaricode/go-fiber/views/layout"
 import "alaricode/go-fiber/views/widgets"
 import "alaricode/go-fiber/internal/vacancy"
 
-templ Main(vacancies []vacancy.Vacancy) {
+templ Main(vacancies []vacancy.Vacancy, pagesCount, page int) {
 	@layout.Layout(layout.LayoutProps{
 		Title: "Найди работу мечты",
 		MetaDescription: "Сайт по поиску работы мечты",
@@ -16,7 +16,7 @@ templ Main(vacancies []vacancy.Vacancy) {
 			@components.Title("Найди работу своей мечты!")
 			@components.SubTitle("Простой поиск работы")
 			}
-			@widgets.VacancyList(vacancies)
+			@widgets.VacancyList(vacancies, pagesCount, page)
 			<div class="main__submit-form">
 				@widgets.VacancyForm()
 			</div>

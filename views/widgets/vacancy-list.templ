@@ -2,8 +2,9 @@ package widgets
 
 import "alaricode/go-fiber/internal/vacancy"
 import "alaricode/go-fiber/views/components"
+import "fmt"
 
-templ VacancyList(vacancies []vacancy.Vacancy) {
+templ VacancyList(vacancies []vacancy.Vacancy, pagesCount, page int) {
 @VacancyListStyle()
 	<div class="vacancy-list__wrapper">
 		@components.Title2("Последние вакансии", false)
@@ -19,6 +20,14 @@ templ VacancyList(vacancies []vacancy.Vacancy) {
 					Createdat: vacancy.CreatedAt,
 					Role: vacancy.Role,
 				})
+			}
+		</div>
+		<div>
+			if page != 1 {
+				<a href={templ.SafeURL(fmt.Sprintf("/?page=%d", page - 1))}>Предыдущие</a>
+			}
+			if page != pagesCount {
+				<a href={templ.SafeURL(fmt.Sprintf("/?page=%d", page + 1))}>Следующие</a>
 			}
 		</div>
 	</div>
