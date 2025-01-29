@@ -1,0 +1,32 @@
+package widgets
+
+import "alaricode/go-fiber/views/components"
+
+templ LoginForm() {
+	@LoginFormStyle()
+	<form hx-post="/" hx-trigger="submit" class="login-form">
+		@components.Input(components.InputProps{
+			Name: "email",
+			Placeholder: "Email",
+		})
+		@components.Input(components.InputProps{
+			Name: "password",
+			Placeholder: "Пароль",
+		})
+		@components.SubmitButton() {
+			<div>Опубликовать</div>
+		}
+	</form>
+}
+
+templ LoginFormStyle() {
+	<style>
+	.login-form {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+		width: 100%;
+		max-width: 520px;
+	}
+	</style>
+}
