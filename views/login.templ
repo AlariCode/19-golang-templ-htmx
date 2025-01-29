@@ -1,0 +1,25 @@
+package views
+
+import "alaricode/go-fiber/views/components"
+import "alaricode/go-fiber/views/layout"
+
+templ Login() {
+	@layout.Layout(layout.LayoutProps{
+		Title: "Вход на сайт",
+		MetaDescription: "Войти на сайт поиска работы",
+	}) {
+		<main>
+			@LoginStyle()
+			@layout.Header() {
+			@components.Title("Войти на сайт")
+			@components.SubTitle("Войдите под своей учётной записью")
+			}
+		</main>
+	}
+}
+
+templ LoginStyle() {
+<style>
+	
+</style>
+}
