@@ -22,13 +22,19 @@ templ VacancyList(vacancies []vacancy.Vacancy, pagesCount, page int) {
 				})
 			}
 		</div>
-		<div>
-			if page != 1 {
-				<a href={templ.SafeURL(fmt.Sprintf("/?page=%d", page - 1))}>Предыдущие</a>
-			}
-			if page != pagesCount {
-				<a href={templ.SafeURL(fmt.Sprintf("/?page=%d", page + 1))}>Следующие</a>
-			}
+		<div class="vacancy-list__paginaton">
+			<div class="vacancy-list__paginaton-item">
+				if page != 1 {
+					<img src="/public/icons/chevron-left.svg" alt="Стрелка влево" />
+					<a href={templ.SafeURL(fmt.Sprintf("/?page=%d", page - 1))}>Предыдущие</a>
+				}
+			</div>
+			<div class="vacancy-list__paginaton-item">
+				if page != pagesCount {
+					<a href={templ.SafeURL(fmt.Sprintf("/?page=%d", page + 1))}>Следующие</a>
+					<img src="/public/icons/chevron-right.svg" alt="Стрелка справо" />
+				}
+			</div>
 		</div>
 	</div>
 }
@@ -49,6 +55,24 @@ templ VacancyListStyle() {
 		align-items: center;
 		flex-direction: column;
 		gap: 24px;
+		margin-bottom: 50px;
+	}
+	.vacancy-list__paginaton {
+		display: flex;
+		justify-content: space-between;
+		gap: 24px;
+	}
+	.vacancy-list__paginaton-item {
+		display: flex;
+		gap: 8px;
+		align-items: center;
+	}
+	.vacancy-list__paginaton-item a {
+		text-decoration: none;
+		color: #6C757D;
+	}
+	.vacancy-list__paginaton-item a:hover {
+		color: #545a60;
 	}
 </style>
 }
