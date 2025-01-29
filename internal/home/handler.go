@@ -8,6 +8,7 @@ import (
 	"net/http"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/session"
 	"github.com/rs/zerolog"
 )
 
@@ -15,6 +16,7 @@ type HomeHandler struct {
 	router       fiber.Router
 	customLogger *zerolog.Logger
 	repository   *vacancy.VacancyRepository
+	store        *session.Store
 }
 
 type User struct {
@@ -22,11 +24,12 @@ type User struct {
 	Name string
 }
 
-func NewHandler(router fiber.Router, customLogger *zerolog.Logger, repository *vacancy.VacancyRepository) {
+func NewHandler(router fiber.Router, customLogger *zerolog.Logger, repository *vacancy.VacancyRepository, store *session.Store) {
 	h := &HomeHandler{
 		router:       router,
 		customLogger: customLogger,
 		repository:   repository,
+		store:        store,
 	}
 	h.router.Get("/", h.home)
 	h.router.Get("/login", h.login)
@@ -36,6 +39,13 @@ func NewHandler(router fiber.Router, customLogger *zerolog.Logger, repository *v
 func (h *HomeHandler) home(c *fiber.Ctx) error {
 	PAGE_ITEMS := 2
 	page := c.QueryInt("page", 1)
+	sess, err := h.store.Get(c)
+	if err != nil {
+		panic(err)
+	}
+	if name, ok := sess.Get("name").(string); ok {
+		h.customLogger.Info().Msg(name)
+	}
 	count := h.repository.CountAll()
 	vacancies, err := h.repository.GetAll(PAGE_ITEMS, (page-1)*PAGE_ITEMS)
 	if err != nil {
@@ -48,6 +58,14 @@ func (h *HomeHandler) home(c *fiber.Ctx) error {
 
 func (h *HomeHandler) login(c *fiber.Ctx) error {
 	component := views.Login()
+	sess, err := h.store.Get(c)
+	if err != nil {
+		panic(err)
+	}
+	sess.Set("name", "Антон")
+	if err := sess.Save(); err != nil {
+		panic(err)
+	}
 	return tadapter.Render(c, component, http.StatusOK)
 }
 
