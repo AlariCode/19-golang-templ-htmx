@@ -14,7 +14,10 @@ templ Menu() {
 				<a class="menu__right-link" href="/login">Войти</a>
 			} else {
 				<span class="menu__right-email">{email}</span>
-				<a class="menu__right-link" href="/login">Выйти</a>
+				<a class="menu__right-link"
+				 	hx-get="/api/logout"
+					hx-trigger="click"
+				>Выйти</a>
 			}
 			@components.LinkButton("/register") {
 				<span>Зарегистрироваться</span>

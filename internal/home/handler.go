@@ -37,6 +37,7 @@ func NewHandler(router fiber.Router, customLogger *zerolog.Logger, repository *v
 	h.router.Get("/404", h.error)
 
 	h.router.Post("/api/login", h.apiLogin)
+	h.router.Get("/api/logout", h.apiLogout)
 }
 
 func (h *HomeHandler) home(c *fiber.Ctx) error {
@@ -94,6 +95,19 @@ func (h *HomeHandler) apiLogin(c *fiber.Ctx) error {
 	}
 	component := components.Notification("Неверный логин или пароль", components.NotificationFail)
 	return tadapter.Render(c, component, http.StatusBadRequest)
+}
+
+func (h *HomeHandler) apiLogout(c *fiber.Ctx) error {
+	sess, err := h.store.Get(c)
+	if err != nil {
+		panic(err)
+	}
+	sess.Delete("email")
+	if err := sess.Save(); err != nil {
+		panic(err)
+	}
+	c.Response().Header.Add("Hx-Redirect", "/")
+	return c.Redirect("/", http.StatusOK)
 }
 
 func (h *HomeHandler) error(c *fiber.Ctx) error {
