@@ -4,7 +4,16 @@ import "alaricode/go-fiber/views/components"
 
 templ LoginForm() {
 	@LoginFormStyle()
-	<form hx-post="/" hx-trigger="submit" class="login-form">
+	<div id="login-result"></div>
+	<form
+		hx-ext="response-targets"
+		hx-post="/api/login"
+		hx-trigger="submit"
+		class="login-form"
+		hx-target="#login-result"
+		hx-target-error="#login-result"
+		hx-swap="innerHTML"
+	>
 		@components.Input(components.InputProps{
 			Name: "email",
 			Placeholder: "Email",
@@ -12,6 +21,7 @@ templ LoginForm() {
 		@components.Input(components.InputProps{
 			Name: "password",
 			Placeholder: "Пароль",
+			Type: "password",
 		})
 		@components.SubmitButton() {
 			<div>Опубликовать</div>
@@ -21,6 +31,9 @@ templ LoginForm() {
 
 templ LoginFormStyle() {
 	<style>
+	#login-result {
+		margin-bottom: 10px;
+	}
 	.login-form {
 		display: flex;
 		flex-direction: column;
