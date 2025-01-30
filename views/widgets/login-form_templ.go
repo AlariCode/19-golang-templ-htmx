@@ -66,7 +66,7 @@ func LoginForm() templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div>Опубликовать</div>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div>Войти</div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

@@ -43,15 +43,6 @@ func NewHandler(router fiber.Router, customLogger *zerolog.Logger, repository *v
 func (h *HomeHandler) home(c *fiber.Ctx) error {
 	PAGE_ITEMS := 2
 	page := c.QueryInt("page", 1)
-	sess, err := h.store.Get(c)
-	if err != nil {
-		panic(err)
-	}
-	userEmail := ""
-	if email, ok := sess.Get("email").(string); ok {
-		userEmail = email
-	}
-	c.Locals("email", userEmail)
 	count := h.repository.CountAll()
 	vacancies, err := h.repository.GetAll(PAGE_ITEMS, (page-1)*PAGE_ITEMS)
 	if err != nil {
@@ -64,15 +55,6 @@ func (h *HomeHandler) home(c *fiber.Ctx) error {
 
 func (h *HomeHandler) login(c *fiber.Ctx) error {
 	component := views.Login()
-	sess, err := h.store.Get(c)
-	if err != nil {
-		panic(err)
-	}
-	userEmail := ""
-	if email, ok := sess.Get("email").(string); ok {
-		userEmail = email
-	}
-	c.Locals("email", userEmail)
 	return tadapter.Render(c, component, http.StatusOK)
 }
 
