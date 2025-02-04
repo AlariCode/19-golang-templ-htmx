@@ -16,6 +16,7 @@ type VacancyCardProps struct {
 templ VacancyCard(props VacancyCardProps) {
 	{{ date := elapsed.LocalTime(props.Createdat, "ru") }}
 	@VacancyCardStyle()
+	@VacancyCardScript()
 	<div class="vacancy-card">
 		<div>
 			<span class="vacancy-card__createdat">{ date }</span>
@@ -39,11 +40,22 @@ templ VacancyCard(props VacancyCardProps) {
 					<span>{ props.Location }</span>
 				</div>
 			</div>
-			@LinkButton(""){
-				<span>Откликнуться</span>
-			}
+			<button onclick={ templ.JSFuncCall("submitHandler", templ.JSExpression("event"), props.Email) }>Откликнуться</button>
+			// @LinkButton(""){
+			// 	<span>Откликнуться</span>
+			// }
 		</div>
 	</div>
+}
+
+templ VacancyCardScript() {
+	<script>
+		function submitHandler(event, message) {
+			console.log(message);
+			alert(message);
+			console.log(event);
+		}
+	</script>
 }
 
 templ VacancyCardStyle() {
