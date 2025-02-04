@@ -51,6 +51,7 @@ func VacancyList(vacancies []vacancy.Vacancy, pagesCount, page int) templ.Compon
 		}
 		for _, vacancy := range vacancies {
 			templ_7745c5c3_Err = components.VacancyCard(components.VacancyCardProps{
+				Id:          vacancy.Id,
 				Email:       vacancy.Email,
 				Location:    vacancy.Location,
 				Salary:      vacancy.Salary,
