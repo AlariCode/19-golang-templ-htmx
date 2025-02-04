@@ -3,6 +3,7 @@ package components
 import "time"
 import "github.com/rvflash/elapsed"
 import "strconv"
+import "fmt"
 
 type VacancyCardProps struct {
 	Id int
@@ -19,6 +20,7 @@ templ VacancyCard(props VacancyCardProps) {
 	{{ date := elapsed.LocalTime(props.Createdat, "ru") }}
 	@VacancyCardStyle()
 	@VacancyCardScript()
+	@templ.JSONScript(fmt.Sprintf("vacancy-id-%d", props.Id), props)
 	<div class="vacancy-card" vacancy-data-id={ strconv.Itoa(props.Id) } vacancy-data={ templ.JSONString(props)}>
 		<div>
 			<span class="vacancy-card__createdat">{ date }</span>
