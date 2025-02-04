@@ -47,14 +47,14 @@ func Layout(props LayoutProps) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</title><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap\" rel=\"stylesheet\"><script src=\"https://unpkg.com/htmx.org@2.0.4\"></script><script src=\"https://unpkg.com/htmx-ext-response-targets@2.0.0/response-targets.js\"></script><link rel=\"stylesheet\" href=\"/public/styles.css\"><meta name=\"description\" content=\"")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</title><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap\" rel=\"stylesheet\"><script src=\"https://unpkg.com/htmx.org@2.0.4\"></script><script src=\"https://unpkg.com/htmx-ext-response-targets@2.0.0/response-targets.js\"></script><link rel=\"stylesheet\" href=\"/public/styles.css\"><link rel=\"icon\" type=\"image/png\" href=\"/public/favicon/favicon-32x32.png\"><link rel=\"apple-touch-icon\" sizes=\"48x48\" href=\"/public/favicon/favicon-48x48.png\"><link rel=\"apple-touch-icon\" sizes=\"72x72\" href=\"/public/favicon/favicon-72x72.png\"><link rel=\"apple-touch-icon\" sizes=\"96x96\" href=\"/public/favicon/favicon-96x96.png\"><link rel=\"apple-touch-icon\" sizes=\"256x256\" href=\"/public/favicon/favicon-256x256.png\"><link rel=\"apple-touch-icon\" sizes=\"384x384\" href=\"/public/favicon/favicon-384x384.png\"><link rel=\"apple-touch-icon\" sizes=\"512x512\" href=\"/public/favicon/favicon-512x512.png\"><link rel=\"manifest\" href=\"/public/favicon/manifest.webmanifest\" crossorigin=\"anonymous\"><meta name=\"description\" content=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(props.MetaDescription)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/layout/layout.templ`, Line: 23, Col: 57}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/layout/layout.templ`, Line: 31, Col: 57}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
