@@ -40,10 +40,9 @@ templ VacancyCard(props VacancyCardProps) {
 					<span>{ props.Location }</span>
 				</div>
 			</div>
-			<button onclick={ templ.JSFuncCall("submitHandler", templ.JSExpression("event"), props.Email) }>Откликнуться</button>
-			// @LinkButton(""){
-			// 	<span>Откликнуться</span>
-			// }
+			@Button(templ.JSFuncCall("submitHandler", templ.JSExpression("event"), props.Email)){
+				<span>Откликнуться</span>
+			}
 		</div>
 	</div>
 }
