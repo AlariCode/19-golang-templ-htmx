@@ -3,6 +3,7 @@ package layout
 type LayoutProps struct {
 	Title string
 	MetaDescription string
+	Image string
 }
 
 templ Layout(props LayoutProps) {
@@ -29,6 +30,8 @@ templ Layout(props LayoutProps) {
 		<link rel="apple-touch-icon" sizes="512x512" href="/public/favicon/favicon-512x512.png">
 		<link rel="manifest" href="/public/favicon/manifest.webmanifest" crossorigin="anonymous">
 		<meta name="description" content={props.MetaDescription} />
+		<meta property="og:title" content={props.Title} />
+		<meta property="og:description" content={props.MetaDescription} />
 	</head>
 	<body>
 		{ children... }

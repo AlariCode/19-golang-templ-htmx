@@ -3,6 +3,7 @@ package main
 import (
 	"alaricode/go-fiber/config"
 	"alaricode/go-fiber/internal/home"
+	"alaricode/go-fiber/internal/sitemap"
 	"alaricode/go-fiber/internal/vacancy"
 	"alaricode/go-fiber/pkg/database"
 	"alaricode/go-fiber/pkg/logger"
@@ -48,6 +49,7 @@ func main() {
 	// Handler
 	home.NewHandler(app, customLogger, vacancyRepo, store)
 	vacancy.NewHandler(app, customLogger, vacancyRepo)
+	sitemap.NewHandler(app)
 
 	app.Listen(":3000")
 }
