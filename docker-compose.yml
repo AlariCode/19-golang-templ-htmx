@@ -10,3 +10,12 @@ services:
       - ./postgres-data:/data/postgres
     ports:
       - "5432:5432"
+  app:
+    container_name: app_go
+    image: go-app
+    environment:
+      LOG_LEVEL: 0
+      LOG_FORMAT: "console"
+      DATABASE_URL: "postgres://postgres:my_pass@postgres:5432/job?sslmode=disable"
+    ports:
+      - "3001:3000"
