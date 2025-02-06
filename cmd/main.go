@@ -30,6 +30,7 @@ func main() {
 	}))
 	app.Use(recover.New())
 	app.Static("/public", "./public")
+	app.Static("/robots.txt", "./public/robots.txt")
 	dbpool := database.CreateDbPool(dbConfig, customLogger)
 	defer dbpool.Close()
 	storage := postgres.New(postgres.Config{
